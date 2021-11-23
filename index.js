@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
 app.get('/', (request, response) => {
-  response.json({message: "Today is a neat day!"})
+  response.json({message: "Today's date: Tuesday 23 Nov"})
 })
 
 // To make app listen. When server run, this block of code runs

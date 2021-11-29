@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const { randomNumberGenerator } = require('./postsFunction');
 
 
 // Express has router options
@@ -13,9 +14,16 @@ routes.get('/', (request, response) => {
   response.json(`Received a request on ${request.originalUrl}`);
 })
 
+routes.get('/randomNumber', async (request, response) => {
+  let asyncResult = await someAsyncFunction();
+  response.end(`<h1>${randomNumberGenerator()}</h1>`);
+  // We can give response some data to work with
+})
+
 // This is a route parameter
 // THIS param can be used as variable
-// Nested dynamci
+// Nested dynamic
+// As this parameter route comes first, it will return JSON
 routes.get('/:postID', (request, response) => {
   response.json(`Route param was ${request.params.postID}`)
 })
@@ -35,6 +43,7 @@ routes.post('/:postID', (request, response) => {
 
   
 })
+
 
 
 // NESTER ROUTES

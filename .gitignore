@@ -1,2 +1,5 @@
+.env
+/keys
+
 # dependencies
 node_modules/

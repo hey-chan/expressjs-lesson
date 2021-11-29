@@ -15,6 +15,12 @@ const PORT = process.env.PORT || 3000;
 // ALSO valid. Could add localhost as well 
 const HOST = '0.0.0.0'
 
+const firebaseAdmin = require('firebase-admin');
+// Once we require, we can initialize
+firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS))
+})
+
 
 // We can receive JSON data from POST/PUT/PATCH etc requests
 // use : changes things
@@ -24,8 +30,6 @@ app.use(express.urlencoded({extended: true}))
 
 
 // Server listens to request
-
-
 
 // We can add more routes
 app.get('/', (request, response) => {
@@ -37,7 +41,8 @@ app.get('/', (request, response) => {
 const importedPostRouting = require('./Posts/postsRoutes')
 app.use('/posts', importedPostRouting)
 
-
+const importedUserRouting = require('./Users/userRoutes');
+app.use('/Users', importedUserRouting)
 
 
 // To make app listen. When server run, this block of code runs
